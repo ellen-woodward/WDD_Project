@@ -6,11 +6,13 @@
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <meta name="description" content="">
      <meta name="author" content="">
-     <title>Home Page</title>
+     <title>Home | ExtraBoard</title>
+     <link rel="icon" type="image/x-icon" href="images/favicon.ico"> <!--Not working!!-->
      <!-- Bootstrap Core CSS -->
      <link href="css/bootstrap.css" rel="stylesheet">
-     <!-- <link href="css/fontawesome.min.css" rel="stylesheet"> -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <!-- Font Awesome -->
+     <script src="https://kit.fontawesome.com/82a6585fa9.js" crossorigin="anonymous"></script>
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
      <!-- Custom CSS -->
      <link href="css/style.css" rel="stylesheet">
 </head>
@@ -18,7 +20,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="index.html">
-              <img src="images/logo-backgroundremoved.png" width="300" alt="" class="d-inline-block align-middle mr-2">
+              <img src="images/updatedlogo.png" width="300" alt="logo image" class="d-inline-block align-middle mr-2">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span></button>
@@ -44,11 +46,23 @@
                         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                     </button>
                 </form>
-                <a href="#"><i id="profileicon" class="fa fa-fw fa-user"></i> Login</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i id="profileicon" class="fa-solid fa-user fa-lg"></i></a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">User Details</a></li>
+                      <li><hr class="dropdown-divider" /></li>
+                      <li><a class="dropdown-item" href="#">Login</a></li>
+                  </ul>
+              </li>
+              </ul>
             </div>
         </div>
     </nav>
 <main>
+  <div class="alert alert-danger fade show" role="alert" style="text-align: center;">
+    <i class="fa-solid fa-truck-bolt fa-lg"></i><strong>Free Delivery</strong> on all orders over €30
+  </div>
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -86,13 +100,14 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-      </div>
+      </div>     
     </main>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-          <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+          <div class="container"><p class="m-0 text-center text-white">Copyright &copy; ExtraBoard 2022</p></div>
       </footer>
      <!-- Bootstrap Core JavaScript -->
      <script src="js/bootstrap.js"></script>
+     <!-- <script src="https://kit.fontawesome.com/82a6585fa9.js" crossorigin="anonymous"></script> -->
    </body>
 </html>
