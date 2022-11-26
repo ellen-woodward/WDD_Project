@@ -1,5 +1,11 @@
 $icon-colour: darkgray;
+$lightred-colour: #ff5d5c;
+$darkred-colour: #ea1112;
 
 #profileicon{
     color: $icon-colour;
+}
+
+h6{
+    color: $lightred-colour;
 }
