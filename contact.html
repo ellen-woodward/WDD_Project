@@ -1,4 +1,4 @@
-<!-- fix form -->
+<!-- fix form to get form data displayed in url-->
 
 <!DOCTYPE html>
    <html lang="en">
@@ -75,7 +75,7 @@
                       <p class="mb-4 text-muted">Get in Touch!</p>
                     </div>
       
-                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="http://www.foo.com" method="GET">
       
                       <!-- Name Input -->
                       <div class="form-floating mb-3">
@@ -103,8 +103,6 @@
                       <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center mb-3">
                           <div class="fw-bolder">Form submission successful!</div>
-                          <p>To activate this form, sign up at</p>
-                          <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                         </div>
                       </div>
       
