@@ -1,9 +1,16 @@
-const productsEl = document.querySelector(".products");
+let cart;
+let total = document.getElementById('total');
+let totalItems = 0;
+
+const productsDiv = document.querySelector(".products");
+// const cartBtn = document.getElementById("cart").addEventListener('click', openCart, false);
+// const closeBtn = document.getElementById("closeBtn").addEventListener('click', closeCart, false);
+// const cartSidebar = document.getElementById("cartSidebar");
 
 // RENDER PRODUCTS
 function renderProdcuts() {
     products.forEach((product) => {
-      productsEl.innerHTML += `
+      productsDiv.innerHTML += `
               <div class="col mb-5">
               <div class="card h-100">
                   <img class="card-img-top" src="${product.imgSrc}" alt="${product.name}" />
@@ -25,13 +32,21 @@ function renderProdcuts() {
   renderProdcuts();
 
 // Cart Array
-let cart = [];
+if (localStorage.getItem('cart') == null){
+    cart = [];
+    total.innerHTML = 0;
+}
+else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+    total.innerHTML = cart.length;
+
+}
 
 //ADD TO CART
 function addToCart(id){
     // check if product is already in cart
     if(cart.some((item) => item.id === id)){
-        alert("Product already in cart");
+        changeNumberofUnits('plus', id);
     }
     else{
         const item = products.find((product) => product.id === id);
@@ -40,12 +55,35 @@ function addToCart(id){
             units: 1,
         });
     }
-
+    totalItems++;
+    localStorage.setItem("cart", JSON.stringify(cart));
     updateCart();
 }
 
 // UPDATE CART
 function updateCart(){
+    total.innerHTML = totalItems;
     // renderCartItems();
     // renderCartSubtotal();
+}
+
+function changeNumberofUnits(action, id){
+    cart = cart.map((item) => {
+        let units = item.units;
+        if(item.id === id){
+            if(action === 'plus'){
+                units++;
+                totalItems++; // not work?
+            }
+            else if(action === 'minus'){
+                units--;
+                totalItems--;
+            }
+        }
+        return{
+            ...item,
+            units,
+        };
+    });
+    updateCart();
 }
