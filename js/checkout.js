@@ -1,10 +1,12 @@
 // find a way of deleting one item at a time
+// fix total items being displayed
 
 var cart = JSON.parse(localStorage.getItem('cart'));
 const cartDiv = document.getElementById('cartDiv');
 const deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
+let total = document.getElementById('total');
 
-// RENDER CART ITEMS
+// RENDER CART ITEMS by iterating through product.js
 function renderCartItems() {
     cartDiv.innerHTML = "";
     cart.forEach((item) => {
@@ -55,9 +57,11 @@ function renderCartItems() {
         if(item.id === id){
             if(action === 'plus'){
                 units++;
+                changeTotalItems('plus');
             }
             else if(action === 'minus' && units > 1){
                 units--;
+                changeTotalItems('minus');
             }
             else{
                 alert('Invalid Number of Item!');
@@ -80,4 +84,22 @@ function renderCartItems() {
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     cartDiv.innerHTML = "Your cart is empty";
+    changeTotalItems('empty');
   }
+
+  function changeTotalItems(action){
+
+    let totalItems = localStorage.getItem('total');
+    
+    if(action === 'plus'){
+        totalItems++;
+    }
+    else if(action === 'minus'){
+        totalItems--;
+    }
+    else if(action === 'empty'){
+      totalItems = 0;
+    }
+    localStorage.setItem('total', totalItems);
+    displayTotal(); // function from main.js
+}

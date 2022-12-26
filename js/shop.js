@@ -1,11 +1,7 @@
 let cart;
 let total = document.getElementById('total');
-let totalItems = 0;
 
 const productsDiv = document.querySelector(".products");
-// const cartBtn = document.getElementById("cart").addEventListener('click', openCart, false);
-// const closeBtn = document.getElementById("closeBtn").addEventListener('click', closeCart, false);
-// const cartSidebar = document.getElementById("cartSidebar");
 
 // RENDER PRODUCTS
 function renderProdcuts() {
@@ -42,6 +38,14 @@ else{
 
 }
 
+// Total Items
+if (localStorage.getItem('total') == null){
+    localStorage.setItem('total', cart.length);
+}
+else{
+    displayTotal();  // function from main.js
+}
+
 //ADD TO CART
 function addToCart(id){
     // check if product is already in cart
@@ -55,16 +59,8 @@ function addToCart(id){
             units: 1,
         });
     }
-    totalItems++;
+    changeTotalItems('plus');
     localStorage.setItem("cart", JSON.stringify(cart));
-    updateCart();
-}
-
-// UPDATE CART
-function updateCart(){
-    total.innerHTML = totalItems;
-    // renderCartItems();
-    // renderCartSubtotal();
 }
 
 function changeNumberofUnits(action, id){
@@ -73,11 +69,11 @@ function changeNumberofUnits(action, id){
         if(item.id === id){
             if(action === 'plus'){
                 units++;
-                totalItems++; // not work?
+                changeTotalItems('plus');
             }
             else if(action === 'minus'){
                 units--;
-                totalItems--;
+                changeTotalItems('minus');
             }
         }
         return{
@@ -86,4 +82,18 @@ function changeNumberofUnits(action, id){
         };
     });
     updateCart();
+}
+
+function changeTotalItems(action){
+
+    let totalItems = localStorage.getItem('total');
+    
+    if(action === 'plus'){
+        totalItems++;
+    }
+    else if(action === 'minus'){
+        totalItems--;
+    }
+    localStorage.setItem('total', totalItems);
+    displayTotal();  // function from main.js
 }
