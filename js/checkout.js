@@ -1,10 +1,20 @@
 // find a way of deleting one item at a time
-// fix total items being displayed
 
 var cart = JSON.parse(localStorage.getItem('cart'));
-const cartDiv = document.getElementById('cartDiv');
-const deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
+let cartDiv = document.getElementById('cartDiv');
+let deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
 let total = document.getElementById('total');
+
+// Ensures there is something in cart before continuing to pay
+let payBtn = document.getElementById('go-to-pay').addEventListener('click', function(){
+  let totalItems = localStorage.getItem('total');
+  if(totalItems > 0){
+    document.location.href = 'payment.html';
+  }
+  else{
+    alert("Please add something to cart first!");
+  }
+});
 
 // RENDER CART ITEMS by iterating through product.js
 function renderCartItems() {
@@ -28,7 +38,7 @@ function renderCartItems() {
               <i class="fas fa-minus"></i>
             </button>
 
-            <input id="form1" min="0" name="quantity" value="${item.units}" type="number"
+            <input id="form1" min="0" name="quantity" value="${item.units}" readonly
               class="form-control form-control-sm" />
 
             <button class="btn btn-link px-2"
@@ -103,3 +113,4 @@ function renderCartItems() {
     localStorage.setItem('total', totalItems);
     displayTotal(); // function from main.js
 }
+

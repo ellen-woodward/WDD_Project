@@ -1,3 +1,5 @@
+// why if i press add to cart twice on same button, it increments by an extra one??
+
 let cart;
 let total = document.getElementById('total');
 
@@ -35,12 +37,11 @@ if (localStorage.getItem('cart') == null){
 else{
     cart = JSON.parse(localStorage.getItem('cart'));
     total.innerHTML = cart.length;
-
 }
 
 // Total Items
 if (localStorage.getItem('total') == null){
-    localStorage.setItem('total', cart.length);
+    localStorage.setItem('total', 0);
 }
 else{
     displayTotal();  // function from main.js
@@ -53,13 +54,13 @@ function addToCart(id){
         changeNumberofUnits('plus', id);
     }
     else{
+        changeTotalItems('plus');
         const item = products.find((product) => product.id === id);
         cart.push({
             ...item,
             units: 1,
         });
     }
-    changeTotalItems('plus');
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
@@ -81,7 +82,6 @@ function changeNumberofUnits(action, id){
             units,
         };
     });
-    updateCart();
 }
 
 function changeTotalItems(action){
