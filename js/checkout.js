@@ -4,23 +4,24 @@ var cart = JSON.parse(localStorage.getItem('cart'));
 let cartDiv = document.getElementById('cartDiv');
 let deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
 let total = document.getElementById('total');
+let subtotal = document.getElementById('subtotal');
 
 // Ensures there is something in cart before continuing to pay
-let payBtn = document.getElementById('go-to-pay').addEventListener('click', function(){
+let payBtn = document.getElementById('go-to-pay').addEventListener('click', function () {
   let totalItems = localStorage.getItem('total');
-  if(totalItems > 0){
+  if (totalItems > 0) {
     document.location.href = 'payment.html';
   }
-  else{
+  else {
     alert("Please add something to cart first!");
   }
 });
 
 // RENDER CART ITEMS by iterating through product.js
 function renderCartItems() {
-    cartDiv.innerHTML = "";
-    cart.forEach((item) => {
-      cartDiv.innerHTML += `
+  cartDiv.innerHTML = "";
+  cart.forEach((item) => {
+    cartDiv.innerHTML += `
       <div class="card rounded-3 mb-4">
       <div class="card-body p-4">
         <div class="row d-flex justify-content-between align-items-center">
@@ -56,61 +57,75 @@ function renderCartItems() {
       </div>
     </div>
           `;
-    });
-  }
-  
+  });
+}
+
+updateCart();
+
+function updateCart() {
   renderCartItems();
+  renderSubTotal();
+}
 
-  function changeNumberofUnits(action, id){
-    cart = cart.map((item) => {
-        let units = item.units;
-        if(item.id === id){
-            if(action === 'plus'){
-                units++;
-                changeTotalItems('plus');
-            }
-            else if(action === 'minus' && units > 1){
-                units--;
-                changeTotalItems('minus');
-            }
-            else{
-                alert('Invalid Number of Item!');
-            }
-        }
-        return{
-            ...item,
-            units,
-        };
-    });
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
-  }
 
-  function updateCart(){
-    renderCartItems();
-  }
+function renderSubTotal() {
+  let totalPrice = 0;
+  let totalItems = localStorage.getItem('total');
 
-  function emptyCart(){
-    cart = [];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    cartDiv.innerHTML = "Your cart is empty";
-    changeTotalItems('empty');
-  }
+  cart.forEach((item) => {
+    totalPrice += item.price * item.units;
+  });
 
-  function changeTotalItems(action){
+  subtotal.innerHTML = `Subtotal (${totalItems} items): &euro;${totalPrice.toFixed(2)}`;
+}
 
-    let totalItems = localStorage.getItem('total');
-    
-    if(action === 'plus'){
-        totalItems++;
+function changeNumberofUnits(action, id) {
+  cart = cart.map((item) => {
+    let units = item.units;
+    if (item.id === id) {
+      if (action === 'plus') {
+        units++;
+        changeTotalItems('plus');
+      }
+      else if (action === 'minus' && units > 1) {
+        units--;
+        changeTotalItems('minus');
+      }
+      else {
+        alert('Invalid Number of Item!');
+      }
     }
-    else if(action === 'minus'){
-        totalItems--;
-    }
-    else if(action === 'empty'){
-      totalItems = 0;
-    }
-    localStorage.setItem('total', totalItems);
-    displayTotal(); // function from main.js
+    return {
+      ...item,
+      units,
+    };
+  });
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCart();
+}
+
+function emptyCart() {
+  cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+  changeTotalItems('empty');
+  updateCart();
+  cartDiv.innerHTML = "Your cart is empty";
+}
+
+function changeTotalItems(action) {
+
+  let totalItems = localStorage.getItem('total');
+
+  if (action === 'plus') {
+    totalItems++;
+  }
+  else if (action === 'minus') {
+    totalItems--;
+  }
+  else if (action === 'empty') {
+    totalItems = 0;
+  }
+  localStorage.setItem('total', totalItems);
+  displayTotal(); // function from main.js
 }
 

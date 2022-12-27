@@ -12,4 +12,13 @@ h6 {
 
 #login-btn {
   color: #ff5d5c;
+}
+
+#subtotal-display {
+  display: inline;
+  text-align: center;
+}
+
+#chechout-button-display {
+  display: inline;
 }/*# sourceMappingURL=style.css.map */
