@@ -6,7 +6,7 @@ function findUser(){
     let password = document.getElementById('password').value;
     users.forEach((user) => {
         if (user.emailaddress === emailAddress && user.password === password){
-            loginUser('true');
+            loginUser('true', user.id);
             return;
         }
         else{
@@ -15,9 +15,9 @@ function findUser(){
     });
 }
 
-function loginUser(state){
+function loginUser(state, id){
     if (state === 'true'){
-        localStorage.setItem('loggedIn', true);    
+        localStorage.setItem('loggedIn', id);    // id of who is logged in? 
         window.location.href = "shop.html";
     }
     else if(state === 'false'){

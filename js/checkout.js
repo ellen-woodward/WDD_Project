@@ -1,10 +1,11 @@
 // find a way of deleting one item at a time
-
+// let units;
 var cart = JSON.parse(localStorage.getItem('cart'));
 let cartDiv = document.getElementById('cartDiv');
 let deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
 let total = document.getElementById('total');
 let subtotal = document.getElementById('subtotal');
+let cartEmpty = document.getElementById('cart-empty');
 
 // Ensures there is something in cart before continuing to pay
 let payBtn = document.getElementById('go-to-pay').addEventListener('click', function () {
@@ -21,6 +22,7 @@ let payBtn = document.getElementById('go-to-pay').addEventListener('click', func
 function renderCartItems() {
   cartDiv.innerHTML = "";
   cart.forEach((item) => {
+    // units = item.units;
     cartDiv.innerHTML += `
       <div class="card rounded-3 mb-4">
       <div class="card-body p-4">
@@ -51,7 +53,7 @@ function renderCartItems() {
             <h5 class="mb-0">&euro;${item.price * item.units}</h5>
           </div>
           <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-            <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+            <a href="#!" onclick="removeItemFromCart(${item.id, item.units})" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
           </div>
         </div>
       </div>
@@ -60,13 +62,32 @@ function renderCartItems() {
   });
 }
 
-updateCart();
+// if(cart == []){
+//   let para = document.createElement('p');
+//   para.textContent = 'Your cart is empty';
+//   cartEmpty.appendChild(para);
+// }
+// else{
+  updateCart();
+// }
 
 function updateCart() {
   renderCartItems();
   renderSubTotal();
 }
 
+// not fully working
+// function removeItemFromCart(id, units){
+//   cart = cart.filter((item) => item.id !== id);
+//   let totalItems = localStorage.getItem('total');
+//   console.log(totalItems);
+//   console.log(id);
+//   console.log(units);
+//   totalItems -= units;
+//   console.log(totalItems);
+//   localStorage.setItem('total', totalItems - units);
+//   updateCart();
+// }
 
 function renderSubTotal() {
   let totalPrice = 0;
@@ -77,6 +98,7 @@ function renderSubTotal() {
   });
 
   subtotal.innerHTML = `Subtotal (${totalItems} items): &euro;${totalPrice.toFixed(2)}`;
+  localStorage.setItem('subtotal', totalPrice);
 }
 
 function changeNumberofUnits(action, id) {
