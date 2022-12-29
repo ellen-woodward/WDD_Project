@@ -9,5 +9,8 @@ const users = [
         address1: "25 Strandhill Rd.",
         address2: "Sligo",
         address3: "Ireland",
+        cardname: "Mr John Smith",
+        cardnumber: "1234 5678 1234 5678",
+        cvc: 123,
     },
 ];

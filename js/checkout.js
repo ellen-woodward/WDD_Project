@@ -1,22 +1,43 @@
 // find a way of deleting one item at a time
 // let units;
-var cart = JSON.parse(localStorage.getItem('cart'));
+let cart = JSON.parse(localStorage.getItem('cart'));
 let cartDiv = document.getElementById('cartDiv');
 let deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
 let total = document.getElementById('total');
 let subtotal = document.getElementById('subtotal');
 let cartEmpty = document.getElementById('cart-empty');
+let message = document.getElementById('message');
 
 // Ensures there is something in cart before continuing to pay
-let payBtn = document.getElementById('go-to-pay').addEventListener('click', function () {
+let payBtn = document.getElementById('go-to-pay').addEventListener('click', goToPayment, false);
+
+function goToPayment(){
   let totalItems = localStorage.getItem('total');
-  if (totalItems > 0) {
-    document.location.href = 'payment.html';
+  
+  if (isloggedIn === 'false'){
+    message.innerHTML = "";
+        message.innerHTML += `
+        <br>
+        <br>
+        <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
+        Please <a href="login.html">login</a> before proceeding!
+        </div>
+        `;
+  }
+  else if (totalItems < 1) {
+    message.innerHTML = "";
+        message.innerHTML += `
+        <br>
+        <br>
+        <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
+        Please add something to your cart!
+        </div>
+        `;
   }
   else {
-    alert("Please add something to cart first!");
+    document.location.href = 'payment.html';
   }
-});
+}
 
 // RENDER CART ITEMS by iterating through product.js
 function renderCartItems() {

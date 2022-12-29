@@ -15,8 +15,8 @@ let loginNav = document.getElementById('login');
 loginNav.addEventListener('click', Logout, false);
 
 // localStorage.setItem('loggedIn', false);
-let loggedIn = localStorage.getItem('loggedIn');
-if (loggedIn !== 'false'){
+let isloggedIn = localStorage.getItem('loggedIn');
+if (isloggedIn !== 'false'){
     loginNav.innerHTML = "";
     loginNav.innerHTML = "Logout";
 }
@@ -26,7 +26,7 @@ else{
 }
 
 function Logout(){
-    if (loggedIn !== 'false'){ // currently logged in
+    if (isloggedIn !== 'false'){ // currently logged in
         loginNav.innerHTML = "";
         loginNav.innerHTML = "Login";
         localStorage.setItem('loggedIn', false);
