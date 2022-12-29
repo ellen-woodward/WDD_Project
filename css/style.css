@@ -6,10 +6,6 @@ h6 {
   color: #ff5d5c;
 }
 
-#contact-body {
-  background: #ff5d5c;
-}
-
 #login-btn {
   color: #ff5d5c;
 }
@@ -21,4 +17,51 @@ h6 {
 
 #chechout-button-display {
   display: inline;
+}
+
+.dbox {
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .dbox {
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+.dbox p {
+  margin-bottom: 0;
+}
+
+.dbox p span {
+  font-weight: 500;
+  color: #000;
+}
+
+.dbox p a {
+  color: #2553b8;
+}
+
+.dbox .icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ea1112;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.dbox .icon span {
+  font-size: 20px;
+  color: #fff;
+}
+
+.dbox .text {
+  width: 100%;
+}
+
+.btn-colour {
+  background-color: #ff5d5c;
 }/*# sourceMappingURL=style.css.map */
