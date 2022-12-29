@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Register | ExtraBoard</title>
+  <title>User Details | ExtraBoard</title>
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -65,70 +65,9 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+            <div id="user-details-div" class="card-body p-5">
 
-              <form name="register" id="user-register"  method="get">
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="firstname">First Name</label>
-                  <input type="text" id="firstname" class="form-control form-control-lg" />
-              </div>
-
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="lastname">Last Name</label>
-                  <input type="text" id="lastname" class="form-control form-control-lg" />
-              </div>
-              
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="email">Email Address</label>
-                  <input type="email" id="email" class="form-control form-control-lg" />
-              </div>
-
-              <div class="form-outline mb-4">
-                <label class="form-label" for="password">Password</label>
-              <input type="password" id="password" class="form-control form-control-lg" />
-            </div>
-
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="dob">Date of Birth</label>
-                <input type="date" id="dob" class="form-control form-control-lg" />
-              </div>
-
-              <br>
-              <br>
-              <h4 class="text-uppercase text-center">Address</h4>
-
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="address1">Address Line 1</label>
-                <input type="text" id="address1" class="form-control form-control-lg" />
-              </div>
-
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="address2">Address Line 2</label>
-                <input type="text" id="address2" class="form-control form-control-lg" />
-              </div>
-
-              <div class="form-outline mb-4">
-                  <label class="form-label" for="address3">Address Line 3</label>
-                <input type="text" id="address3" class="form-control form-control-lg" />
-              </div>
-
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="terms" />
-                  <label class="form-check-label" for="terms">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-warning btn-block btn-lg gradient-custom-4 text-body">Register</button>
-                </div>
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="login.html"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
-              </form>
+<!-- render details form here -->
 
             </div>
           </div>
@@ -149,6 +88,8 @@
   <!-- Bootstrap Core JavaScript -->
   <script src="js/bootstrap.js"></script>
   <script src="js/main.js"></script>
+  <script src="json/users.js"></script>
+  <script src="js/userdetails.js"></script>
 </body>
 
 </html>

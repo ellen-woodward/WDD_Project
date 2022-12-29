@@ -10,14 +10,14 @@ function findUser(){
             return;
         }
         else{
-            loginUser('false');
+            loginUser('false', user.id);
         }
     });
 }
 
 function loginUser(state, id){
     if (state === 'true'){
-        localStorage.setItem('loggedIn', id);    // id of who is logged in? 
+        localStorage.setItem('loggedIn', id);
         window.location.href = "shop.html";
     }
     else if(state === 'false'){

@@ -41,18 +41,27 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i id="profileicon" class="fa-solid fa-user fa-lg"></i></a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" id="user-details-btn" href="#">User Details</a></li>
+                      <li><a class="dropdown-item" id="user-details-btn" href="userdetails.html">User Details</a></li>
                       <li><hr class="dropdown-divider" /></li>
-                      <li><a class="dropdown-item" href="login.html">Login</a></li>
+                      <li><a class="dropdown-item" href="#" id="login">Login</a></li>
                   </ul>
               </li>
               </ul>
             </div>
         </div>
     </nav>
+    <header class="bg-dark py-5">
+      <div class="container px-4 px-lg-5 my-5">
+          <div class="text-center text-white">
+              <h1 class="display-4 fw-bolder">ExtraBoard</h1>
+              <p class="lead fw-normal text-white-50 mb-0">The website for game-lovers who are 'extra bored'!</p>
+          </div>
+      </div>
+  </header>
+  <br>
 <main class="bg-light">
   <div class="alert alert-danger fade show" role="alert" style="text-align: center;">
-    <i class="fa-solid fa-truck-bolt fa-lg"></i><strong>Free Delivery</strong> on all orders over €30
+    <i class="fa-truck fa-solid"></i><strong> Free Delivery</strong> on all orders over €30!
   </div>
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -61,13 +70,13 @@
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
+          <div class="carousel-item active" data-bs-interval="5000">
             <img src="images/monopoly-slide.webp" class="d-block w-100" alt="...">
           </div>
-          <div class="carousel-item" data-bs-interval="2000">
+          <div class="carousel-item" data-bs-interval="5000">
             <img src="images/gaming-slide.jpeg" class="d-block w-100" alt="...">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="5000">
             <img src="images/chess-slide.jpeg" class="d-block w-100" alt="...">
           </div>
         </div>
@@ -81,6 +90,10 @@
         </button>
       </div>
       <br>
+
+      <section class="home-section">
+        <div>Your one-stop-shop for board games and video games!</div>
+      </section>
       <br>
       <br>
       <section>
