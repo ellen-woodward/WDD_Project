@@ -65,16 +65,24 @@ h6{
 }
 
 .home-section{
-  border: 1px solid $darkred-colour;
+  border: 1px solid $lightred-colour;
   margin-left: 50px;
   margin-right: 50px;
   display: block;
   padding: 10px;
-  background-color: $lightred-colour;
 }
 
 .aboutus-text{
   margin-left: 10%;
   margin-right: 10%;
   padding: 20px;
+}
+
+.shop-img{
+  margin-top: 10px;
+}
+
+.carousel-margins{
+  margin-left: 10px;
+  margin-right: 10px;
 }

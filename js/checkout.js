@@ -51,7 +51,7 @@ function renderCartItems() {
           <div class="col-md-2 col-lg-2 col-xl-2">
             <img
               src="${item.imgSrc}"
-              class="img-fluid rounded-3" alt="Cotton T-shirt">
+              class="img-fluid rounded-3" alt="game">
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3">
             <p class="lead fw-normal mb-2">${item.name}</p>

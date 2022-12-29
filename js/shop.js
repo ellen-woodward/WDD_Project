@@ -11,7 +11,7 @@ function renderProdcuts() {
       productsDiv.innerHTML += `
               <div class="col mb-5">
               <div class="card h-100">
-                  <img class="card-img-top" src="${product.imgSrc}" alt="${product.name}" />
+                  <img class="card-img-top shop-img" src="${product.imgSrc}" alt="${product.name}" />
                   <div class="card-body p-4">
                       <div class="text-center">
                           <h5 class="fw-bolder">${product.name}</h5>
