@@ -83,20 +83,26 @@ function renderCartItems() {
   });
 }
 
-// if(cart == []){
-//   let para = document.createElement('p');
-//   para.textContent = 'Your cart is empty';
-//   cartEmpty.appendChild(para);
-// }
-// else{
+if(localStorage.getItem('total') == 0){
+  cartIsEmpty();
+}
+else{
   updateCart();
-// }
+}
 
 function updateCart() {
+  cartEmpty.innerHTML = "";
   renderCartItems();
   renderSubTotal();
 }
 
+function cartIsEmpty(){
+  cartEmpty,innerHtml = "";
+  cartEmpty.innerHTML = `<img class="emptycart" src="images/emptycart.png" alt="empty cart">
+  <h1 class="text-center">Cart is empty!</h1>
+  <h6 class="text-center">Add something to make me happy :)</h6>
+  <br><br>`;
+}
 // not fully working
 // function removeItemFromCart(id, units){
 //   cart = cart.filter((item) => item.id !== id);
@@ -152,7 +158,7 @@ function emptyCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
   changeTotalItems('empty');
   updateCart();
-  cartDiv.innerHTML = "Your cart is empty";
+  cartIsEmpty();
 }
 
 function changeTotalItems(action) {

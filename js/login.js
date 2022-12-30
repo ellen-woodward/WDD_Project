@@ -1,3 +1,4 @@
+let message = document.getElementById('message');
 let loginBtn = document.getElementById('login-btn').addEventListener('click', findUser, false);
 let forgetPassword = document.getElementById('forget-password').addEventListener('click', passwordAlert, false);
 
@@ -27,5 +28,9 @@ function loginUser(state, id){
 }
 
 function passwordAlert(){
-    alert('An email has been sent to you. In the mean time, try password ;)');
+    message.innerHTML += `
+    <div class="alert alert-warning text-center mb-3" id="payment-success" role="alert">
+    An email has been sent to you. In the mean time, try password ;)
+    </div>
+    `;
 }

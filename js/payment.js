@@ -55,13 +55,14 @@ if (loggedIn !== 'false') {
                 <input type="password" id="cvc" class="form-control form-control-lg" value=""/>
                 </div>
 
+                <div id="message"></div>
+
                 <div class="d-flex justify-content-center">
                   <button type="button"
                   onclick="buyNow()" class="btn btn-colour btn-block btn-lg gradient-custom-4 text-body">Buy Now!</button>
                 </div>
 
               </form>
-              <div id="message"></div>
               `;
 }
 else {
@@ -77,10 +78,10 @@ function buyNow() {
         message.innerHTML = "";
         message.innerHTML = `
         <br>
-        <br>
         <div class="alert alert-success text-center mb-3" id="payment-success" role="alert">
         Your order has been placed! Thank you for shopping with ExtraBoard!
         </div>
+        <br>
         `;
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -91,10 +92,10 @@ function buyNow() {
         message.innerHTML = "";
         message.innerHTML += `
         <br>
-        <br>
         <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
         There seems to be a problem with the details entered.
         </div>
+        <br>
         `;
     }
 }

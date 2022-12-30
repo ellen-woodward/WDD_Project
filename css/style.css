@@ -95,4 +95,12 @@ h6 {
 .carousel-margins {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.emptycart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  padding: 20px;
 }/*# sourceMappingURL=style.css.map */
