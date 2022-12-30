@@ -74,7 +74,7 @@ function renderCartItems() {
             <h5 class="mb-0">&euro;${item.price * item.units}</h5>
           </div>
           <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-            <a href="#!" onclick="removeItemFromCart(${item.id, item.units})" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+            <a href="#!" onclick="removeItemFromCart(${item.id})" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
           </div>
         </div>
       </div>
@@ -94,6 +94,11 @@ function updateCart() {
   cartEmpty.innerHTML = "";
   renderCartItems();
   renderSubTotal();
+  displayTotal();
+
+  if(localStorage.getItem('total') < 1){
+    cartIsEmpty();
+  }
 }
 
 function cartIsEmpty(){
@@ -103,18 +108,23 @@ function cartIsEmpty(){
   <h6 class="text-center">Add something to make me happy :)</h6>
   <br><br>`;
 }
-// not fully working
-// function removeItemFromCart(id, units){
-//   cart = cart.filter((item) => item.id !== id);
-//   let totalItems = localStorage.getItem('total');
-//   console.log(totalItems);
-//   console.log(id);
-//   console.log(units);
-//   totalItems -= units;
-//   console.log(totalItems);
-//   localStorage.setItem('total', totalItems - units);
-//   updateCart();
-// }
+
+function removeItemFromCart(id){
+  cart.forEach((item) => {
+    if(item.id === id){
+      let units = item.units;
+      cart = cart.filter((item) => item.id !== id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      editTotal(units);
+    }
+  });
+}
+
+function editTotal(units){
+  let totalItems = localStorage.getItem('total');
+  localStorage.setItem('total', totalItems - units);
+  updateCart();
+}
 
 function renderSubTotal() {
   let totalPrice = 0;

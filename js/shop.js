@@ -1,5 +1,3 @@
-// why if i press add to cart twice on same button, it increments by an extra one??
-
 let cart;
 let total = document.getElementById('total');
 
