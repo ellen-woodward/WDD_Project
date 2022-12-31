@@ -27,14 +27,20 @@ function loginUser(state, id) {
     }
     else if (state === 'false') {
         localStorage.setItem('loggedIn', false);
-        alert('Incorrect login - try again');
+        message.innerHTML = "";
+        message.innerHTML = `
+        <div class="alert alert-danger text-center mb-3" id="payment-success" role="alert">
+        Incorrect details
+        </div>
+        `;
     }
 }
 
 
 // display message if password forgotten
 function passwordAlert() {
-    message.innerHTML += `
+    message.innerHTML = "";
+    message.innerHTML = `
     <div class="alert alert-warning text-center mb-3" id="payment-success" role="alert">
     An email has been sent to you. In the mean time, try password ;)
     </div>

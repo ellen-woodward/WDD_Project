@@ -9,7 +9,6 @@ let message = document.getElementById('message');
 // ensures there is something in cart before continuing to pay
 let payBtn = document.getElementById('go-to-pay').addEventListener('click', goToPayment, false);
 
-ß
 // if nothing in cart, display empty cart image, else render items
 if (localStorage.getItem('total') == 0) {
   cartIsEmpty();
