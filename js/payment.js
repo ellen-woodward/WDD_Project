@@ -1,11 +1,12 @@
 let loggedIn = localStorage.getItem('loggedIn'); // gets id of user who is logged in, otherwise false
 let currentUser = users[loggedIn];
 let PaymentDetailsDiv = document.getElementById('payment-details-div');
-// let cart = localStorage.getItem('cart');
 
+
+// if user is logged in, render form
 if (loggedIn !== 'false') {
-    PaymentDetailsDiv.innerHTML = "";
-    PaymentDetailsDiv.innerHTML += `
+  PaymentDetailsDiv.innerHTML = "";
+  PaymentDetailsDiv.innerHTML += `
     <h2 class="text-uppercase text-center">Checkout</h2>
     <h6 class="text-center mb-5">You're almost there...</h6>
 
@@ -65,37 +66,42 @@ if (loggedIn !== 'false') {
               </form>
               `;
 }
+// or display message
 else {
-    PaymentDetailsDiv.innerHTML = "";
-    PaymentDetailsDiv.innerHTML += `<h2 class="text-uppercase text-center mb-5">Please log in!</h2>`
+  PaymentDetailsDiv.innerHTML = "";
+  PaymentDetailsDiv.innerHTML += `<h2 class="text-uppercase text-center mb-5">Please log in!</h2>`
 }
 
-function buyNow() {
-    let cvc = document.getElementById('cvc').value;
 
-    if (cvc == currentUser.cvc){
-        let message = document.getElementById('message');
-        message.innerHTML = "";
-        message.innerHTML = `
+// checks if form data is correct
+function buyNow() {
+  let cvc = document.getElementById('cvc').value;
+
+  // if correct, empty cart
+  if (cvc == currentUser.cvc) {
+    let message = document.getElementById('message');
+    message.innerHTML = "";
+    message.innerHTML = `
         <br>
         <div class="alert alert-success text-center mb-3" id="payment-success" role="alert">
         Your order has been placed! Thank you for shopping with ExtraBoard!
         </div>
         <br>
         `;
-        cart = [];
-        localStorage.setItem('cart', JSON.stringify(cart));
-        localStorage.setItem('total', 0);
-        displayTotal();       
-    }
-    else{
-        message.innerHTML = "";
-        message.innerHTML += `
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('total', 0);
+    displayTotal();
+  }
+  // else display message
+  else {
+    message.innerHTML = "";
+    message.innerHTML += `
         <br>
         <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
         There seems to be a problem with the details entered.
         </div>
         <br>
         `;
-    }
+  }
 }

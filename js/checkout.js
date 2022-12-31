@@ -1,5 +1,3 @@
-// find a way of deleting one item at a time
-// let units;
 let cart = JSON.parse(localStorage.getItem('cart'));
 let cartDiv = document.getElementById('cartDiv');
 let deleteCart = document.getElementById('delete-cart').addEventListener('click', emptyCart, false);
@@ -8,42 +6,46 @@ let subtotal = document.getElementById('subtotal');
 let cartEmpty = document.getElementById('cart-empty');
 let message = document.getElementById('message');
 
-// Ensures there is something in cart before continuing to pay
+// ensures there is something in cart before continuing to pay
 let payBtn = document.getElementById('go-to-pay').addEventListener('click', goToPayment, false);
 
-function goToPayment(){
-  let totalItems = localStorage.getItem('total');
-  
-  if (isloggedIn === 'false'){
-    message.innerHTML = "";
-        message.innerHTML += `
-        <br>
-        <br>
-        <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
-        Please <a href="login.html">login</a> before proceeding!
-        </div>
-        `;
-  }
-  else if (totalItems < 1) {
-    message.innerHTML = "";
-        message.innerHTML += `
-        <br>
-        <br>
-        <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
-        Please add something to your cart!
-        </div>
-        `;
-  }
-  else {
-    document.location.href = 'payment.html';
+ß
+// if nothing in cart, display empty cart image, else render items
+if (localStorage.getItem('total') == 0) {
+  cartIsEmpty();
+}
+else {
+  updateCart();
+}
+
+
+// re-renders page
+function updateCart() {
+  cartEmpty.innerHTML = "";
+  renderCartItems();
+  renderSubTotal();
+  displayTotal();
+
+  if (localStorage.getItem('total') < 1) {
+    cartIsEmpty();
   }
 }
 
-// RENDER CART ITEMS by iterating through product.js
+
+// renders empty cart image
+function cartIsEmpty() {
+  cartEmpty, innerHtml = "";
+  cartEmpty.innerHTML = `<img class="emptycart" src="images/emptycart.png" alt="empty cart">
+  <h1 class="text-center">Cart is empty!</h1>
+  <h6 class="text-center">Add something to make me happy :)</h6>
+  <br><br>`;
+}
+
+
+// render cart items by iterating through product.js
 function renderCartItems() {
   cartDiv.innerHTML = "";
   cart.forEach((item) => {
-    // units = item.units;
     cartDiv.innerHTML += `
       <div class="card rounded-3 mb-4">
       <div class="card-body p-4">
@@ -78,40 +80,15 @@ function renderCartItems() {
           </div>
         </div>
       </div>
-    </div>
-          `;
+    </div>`;
   });
 }
 
-if(localStorage.getItem('total') == 0){
-  cartIsEmpty();
-}
-else{
-  updateCart();
-}
 
-function updateCart() {
-  cartEmpty.innerHTML = "";
-  renderCartItems();
-  renderSubTotal();
-  displayTotal();
-
-  if(localStorage.getItem('total') < 1){
-    cartIsEmpty();
-  }
-}
-
-function cartIsEmpty(){
-  cartEmpty,innerHtml = "";
-  cartEmpty.innerHTML = `<img class="emptycart" src="images/emptycart.png" alt="empty cart">
-  <h1 class="text-center">Cart is empty!</h1>
-  <h6 class="text-center">Add something to make me happy :)</h6>
-  <br><br>`;
-}
-
-function removeItemFromCart(id){
+// removes item from cart
+function removeItemFromCart(id) {
   cart.forEach((item) => {
-    if(item.id === id){
+    if (item.id === id) {
       let units = item.units;
       cart = cart.filter((item) => item.id !== id);
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -120,12 +97,16 @@ function removeItemFromCart(id){
   });
 }
 
-function editTotal(units){
+
+// changes total to reflect removal
+function editTotal(units) {
   let totalItems = localStorage.getItem('total');
   localStorage.setItem('total', totalItems - units);
   updateCart();
 }
 
+
+// calculates subtotal and renders it
 function renderSubTotal() {
   let totalPrice = 0;
   let totalItems = localStorage.getItem('total');
@@ -138,6 +119,8 @@ function renderSubTotal() {
   localStorage.setItem('subtotal', totalPrice);
 }
 
+
+// if units are changed, change in json data
 function changeNumberofUnits(action, id) {
   cart = cart.map((item) => {
     let units = item.units;
@@ -163,14 +146,8 @@ function changeNumberofUnits(action, id) {
   updateCart();
 }
 
-function emptyCart() {
-  cart = [];
-  localStorage.setItem('cart', JSON.stringify(cart));
-  changeTotalItems('empty');
-  updateCart();
-  cartIsEmpty();
-}
 
+// change total items
 function changeTotalItems(action) {
 
   let totalItems = localStorage.getItem('total');
@@ -188,3 +165,45 @@ function changeTotalItems(action) {
   displayTotal(); // function from main.js
 }
 
+
+// get rid of everything in cart
+function emptyCart() {
+  cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+  changeTotalItems('empty');
+  updateCart();
+  cartIsEmpty();
+}
+
+
+// sees if user can go to payment page
+function goToPayment() {
+  let totalItems = localStorage.getItem('total');
+
+  // if they are not logged in
+  if (isloggedIn === 'false') {
+    message.innerHTML = "";
+    message.innerHTML += `
+        <br>
+        <br>
+        <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
+        Please <a href="login.html">login</a> before proceeding!
+        </div>
+        `;
+  }
+  // if there cart is empty
+  else if (totalItems < 1) {
+    message.innerHTML = "";
+    message.innerHTML += `
+        <br>
+        <br>
+        <div class="alert alert-danger text-center mb-3" id="payment-failure" role="alert">
+        Please add something to your cart!
+        </div>
+        `;
+  }
+  // if neither of above they are good to go
+  else {
+    document.location.href = 'payment.html';
+  }
+}

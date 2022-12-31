@@ -2,9 +2,11 @@ let loggedIn = localStorage.getItem('loggedIn'); // gets id of user who is logge
 let currentUser = users[loggedIn];
 let userDetailsDiv = document.getElementById('user-details-div');
 
-if(loggedIn !== 'false'){
-    userDetailsDiv.innerHTML = "";
-    userDetailsDiv.innerHTML += `
+
+// if user is logged in
+if (loggedIn !== 'false') {
+  userDetailsDiv.innerHTML = "";
+  userDetailsDiv.innerHTML += `
     <h2 class="text-uppercase text-center mb-5">Update User Details</h2>
 
               <form name="register" id="user-register"  method="get">
@@ -55,13 +57,16 @@ if(loggedIn !== 'false'){
               </form>
               `;
 }
-else{
-    userDetailsDiv.innerHTML = "";
-    userDetailsDiv.innerHTML += `<h2 class="text-uppercase text-center mb-5">Please log in!</h2>`
+// else display message
+else {
+  userDetailsDiv.innerHTML = "";
+  userDetailsDiv.innerHTML += `<h2 class="text-uppercase text-center mb-5">Please log in!</h2>`
 }
 
-function updateDetails(){
-    userDetailsDiv.innerHTML += `
+
+// display message
+function updateDetails() {
+  userDetailsDiv.innerHTML += `
     <br>
     <br>
     <div class="alert alert-success text-center mb-3" id="payment-success" role="alert">

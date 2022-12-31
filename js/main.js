@@ -1,38 +1,39 @@
-// put id on user details - user-details-btn
-
+// Cart JavaScript
 let totalCart = document.getElementById('total');
 totalCart.addEventListener('load', displayTotal(), false);
 
-async function displayTotal(){
+
+// displays total in cart at top of page, used in other js files
+async function displayTotal() {
     let totalItems = localStorage.getItem('total');
     totalCart.innerHTML = totalItems;
 }
 
-// let userDetailsBtn = document.getElementById('user-details-btn');
-// userDetailsBtn.style.display = 'none'; 
 
+// Login JavaScript
 let loginNav = document.getElementById('login');
 loginNav.addEventListener('click', Logout, false);
 
-// localStorage.setItem('loggedIn', false);
 let isloggedIn = localStorage.getItem('loggedIn');
-if (isloggedIn !== 'false'){
+if (isloggedIn !== 'false') {
     loginNav.innerHTML = "";
     loginNav.innerHTML = "Logout";
 }
-else{
+else {
     loginNav.innerHTML = "";
     loginNav.innerHTML = "Login";
 }
 
-function Logout(){
-    if (isloggedIn !== 'false'){ // currently logged in
+
+// if user is logged in, log them out and vice versa
+function Logout() {
+    if (isloggedIn !== 'false') { // currently logged in
         loginNav.innerHTML = "";
         loginNav.innerHTML = "Login";
         localStorage.setItem('loggedIn', false);
         window.location.href = "index.html";
     }
-    else{                       // currently logged out
+    else {                       // currently logged out
         window.location.href = "login.html";
     }
 }
