@@ -27,7 +27,7 @@ const products = [
     id: 4,
     name: "Stardew Valley",
     price: 14.99,
-    imgSrc: "images/stardew.jpg",
+    imgSrc: "images/Stardew.jpg",
   },
   {
     id: 5,
